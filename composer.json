@@ -1,0 +1,21 @@
+{
+    "name": "irmnet/base",
+    "description": "Module base for irmnet.", 
+    "keywords": [
+    "framework",
+    "zf2",
+    "doctrine",
+    "base",
+    "irmnet"
+    ],
+    
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload":{
+        "psr-0":{
+            "Base":"src"
+        },
+        "classmap": ["Module.php"]
+    }
+}
