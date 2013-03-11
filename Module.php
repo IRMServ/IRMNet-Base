@@ -10,24 +10,7 @@
 
 namespace Base;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-
 class Module {
-
-    public function onBootstrap(MvcEvent $e) {
-        //
-    }
-
-//    public function checkACL($e) {
-//        $routeMatch = $e->getRouteMatch();
-//        if (!$routeMatch) {
-//            return;
-//        }
-//        $app = $e->getApplication();
-//        $locator = $app->getServiceManager();
-//        $auth = $locator->get('ControllerPluginManager')->get('Permission')->doAuthorization($e, $locator);
-//    }
 
     public function getConfig() {
         return include __DIR__ . '/config/module.config.php';
