@@ -19,8 +19,9 @@
         if (count($sub) > 0):
             echo '<ul class="dropdown-menu">';
             foreach ($sub as $pages):
+                 $param = $pages->getParams();
                 $active = $pages->isActive() ? ' class="active"' : '';
-                echo '<li' . $active . '><a href="' . $this->url($pages->getRoute(), array('action' => $pages->getAction())) . '">' . $pages->getlabel() . '</a></li>';
+                echo '<li' . $active . '><a href="' . $this->url($pages->getRoute(), array('action' => $pages->getAction(),'setor'=>$param['setor'])) . '">' . $pages->getlabel() . '</a></li>';
             endforeach;
             echo '</ul></li>';
         else:
