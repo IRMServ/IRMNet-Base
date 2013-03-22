@@ -1,10 +1,11 @@
 <ul class='nav'>
     <?php
-    $liClass = '';
-     $aAttribs = '';
-    $liClasses = array();
+    
   
     foreach ($this->container as $page):
+        $liClass = '';
+     $aAttribs = '';
+    $liClasses = array();
         $sub = $page->getPages();
 
         if ($page->isActive())
