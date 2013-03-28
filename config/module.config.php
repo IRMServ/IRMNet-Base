@@ -62,14 +62,14 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-        'navigation' => array(
-        // The DefaultNavigationFactory we configured in (1) uses 'default' as the sitemap key
-        'default' => array(
-            // And finally, here is where we define our page hierarchy
-            'base' => array(
-                'label' => 'Página principal',
-                'route' => 'home',
-            ),
-        ),
-    ),
+//        'navigation' => array(
+//        // The DefaultNavigationFactory we configured in (1) uses 'default' as the sitemap key
+//        'default' => array(
+//            // And finally, here is where we define our page hierarchy
+//            'base' => array(
+//                'label' => 'Página principal',
+//                'route' => 'home',
+//            ),
+//        ),
+//    ),
 );

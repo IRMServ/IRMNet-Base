@@ -29,28 +29,50 @@ echo $this->doctype(); ?>
 
     </head>
     <body>
-        <?php $this->placeholder('barrasup')->captureStart(); ?>
+        <?php
+        $auth = new AuthenticationService;
+        $user = $auth->getStorage()->read();
+        if($auth->hasIdentity()):?>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">                     
                     <div class="nav-collapse collapse">
-                        <?php echo $this->navigation('Navigation')->menu()->setPartial(array('partials/navigation.phtml', 'default'))->render(); ?>                       
+                        <?php 
+                          $liClass = '';
+    $aAttribs = '';
+    $liClasses = array();
+     $liClass = ' class="' . implode(' ', $liClasses) . '"';
+//                            echo '<li' . $liClass . '><a href="' . $this->url('home') . '"' . $aAttribs . '>Página principal</a>';
+//    echo '<li' . $liClass . '><a href="' . $this->url('logout') . '"' . $aAttribs . '>Sair</a>';
+//    echo '<li' . $liClass . '><a href="' . $this->url(\str_replace(' ','-',strtolower($user['departamento']))) . '"' . $aAttribs . '>Painel</a>';
+                         echo $this->navigation('Navigation')->menu()->setPartial(array('partials/navigation.phtml', 'default'))->render();
+//                        switch(strtolower($user['departamento']))
+//                        {
+//                            case 'ti':
+//                                echo $this->navigation('Navigation')->menu()->setPartial(array('partials/navigation.phtml', 'ti-navigation'))->render();
+//                                break;
+//                            case 'projetos especiais':
+//                                echo $this->navigation('Navigation')->menu()->setPartial(array('partials/navigation.phtml', 'pe-navigation'))->render();
+//                                break;
+//                            default:
+//                                echo $this->navigation('Navigation')->menu()->setPartial(array('partials/navigation.phtml', 'navigation'))->render();
+//                                break;
+//                        }
+                         ?>                       
                     </div>
                 </div>
             </div>
         </div>
-        <?php $this->placeholder('barrasup')->captureEnd(); ?>
-        <?php
-        $auth = new AuthenticationService;
-        echo $auth->hasIdentity() ? $this->placeholder('barrasup') : '';
-        ?>
+        <?php endif;?>
+      
         <div class="container">
-<?php echo $this->content; ?>
+            <?php echo $this->content; ?>
+         
             <hr>
             <footer>
                 <p>&copy; <?php echo date('Y'); ?> IRM Services <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>
         </div> <!-- /container -->
-<?php echo $this->inlineScript() ?>
+        <?php echo $this->inlineScript() ?>
     </body>
 </html>
