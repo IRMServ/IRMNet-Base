@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -11,12 +12,29 @@ namespace Base\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use RH\Entity\Noticias;
+use Zend\Debug\Debug;
+use \DateTime;
+class IndexController extends AbstractActionController {
 
-class IndexController extends AbstractActionController
-{
-    public function indexAction()
-    {
-        $this->layout()->user = $this->getServiceLocator()->get('Auth')->hasIdentity();
-        return new ViewModel();
+    protected $em;
+
+    public function getEntityManager() {
+        if (null === $this->em) {
+            $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+        }
+        return $this->em;
     }
+
+    public function indexAction() {
+        $data = new DateTime('now');
+        $em = $this->getEntityManager();
+        $not = $em->createQuery("SELECT Noticias FROM RH\Entity\Noticias Noticias where Noticias.destaque = 0 and Noticias.publicacao <= '{$data->format('Y-m-d')}' ORDER BY Noticias.idnoticia DESC");
+        $noticias = $not->getResult();
+        $notdest = $em->createQuery("SELECT Noticias FROM RH\Entity\Noticias Noticias where Noticias.destaque = 1 and Noticias.publicacao <= '{$data->format('Y-m-d')}' ORDER BY Noticias.idnoticia DESC");
+        $noticiasdest = $notdest->getResult();
+      
+        return new ViewModel(array('noticiasdest' => $noticiasdest, 'noticias' => $noticias));
+    }
+
 }

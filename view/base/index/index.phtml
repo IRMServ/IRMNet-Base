@@ -1,4 +1,142 @@
+<style>
+    .peKenBurns {
+        background-color: transparent;
+        border-radius: 0px 0px 0px 0px; 
+        padding: 0px;
+        height: 400px;
+        margin-left:-10px;
+        margin-top:-10px;
+    }      
+    .peKb_slides
+    {
+        border:0 !important;
+        -moz-border-radius:0px;-webkit-border-radius:0px;border-radius:0px;
+        background-color: transparent !important;
+        padding: 0;
+        height: 420px;
+    }
+    .span3{
+        height:350px;
+       
+        margin-bottom:20px;
+        border-bottom:3px solid #942a25;
+    }
+    .span3 h6{       
+        height:20px;
+        background-color: #942a25;
+        color:white;
+        padding:5px;
+        padding-right: 0;
+        margin-top:0px;
+        border-radius:0px 10px 0px 10px;
+    }
+    .span3 a{
+        color: #942a25;
+    }
+    .span3 a:hover
+    {
+        color: #942a25;
+        text-decoration: underline;
+        cursor:pointer;
+    }   
+    .span3  h6 a {
+        color: white;
+    }
+    .span3 h6 a:hover
+    {
+        color: white;
+        text-decoration: underline;
+        cursor:pointer;
+    }   
+    
+    .span3 h4,.span3 p
+    {
+     text-indent: 20px;
+    }
+    .span3 p
+    {
+        height:220px;
+    }
+    .span3 h5{
+        margin-top:-13px;
+    }
+    .noborder
+    {
+        border:0;
+    }
+    a.video{
+        background: none;
+    }
+    .span9 div h1 a{
+        color:white;
+    }
+</style>
+<script>
+
+    jQuery(function($) {
+        $(".peKenBurns").peKenburnsSlider({externalFont: true})
+    })
+    // for google fonts, handle captions sizing only after fonts are loaded
+    jQuery(window).load(function() {
+        $(".peKenBurns").each(function() {
+            $(this).data("peKenburnsSlider").fontsLoaded()
+        })
+    })
+
+</script>
+
+<div class="row-fluid">
+    <div class="span9">
+        <div class="peKenBurns peNoJs" style='background-color: transparent; border-radius: 0px 0px 0px 0px; padding: 0px;' data-autopause="image" data-thumb="disabled" data-mode="kb" data-controls="inner" data-shadow="disabled" data-logo="disabled">
+            <?php
+            $i = 0;
+            for ($i=0;$i<3;$i++):
+                if(isset($this->noticiasdest[$i])):
+                ?>
+                <div <?php echo $i == 0 ? 'class="peKb_active"' : '' ?> data-delay="5" data-zoom="random" data-align='random' >
+                   <img src="<?php echo $this->noticiasdest[$i]->getFundo(); ?>" data-src="<?php echo $this->noticiasdest[$i]->getFundo(); ?>" alt="Banner Image 1" />
+                 
+                    <h1> <a href="<?php echo $this->url('rh/noticias/ver',array('id'=>$this->noticiasdest [$i]->getIdnoticia()));?>"  class="loop" >   <?php echo $this->noticiasdest[$i]->getTitulo() ?></a></h1>
+
+                </div>
+
+
+                <?php
+                endif;
+            endfor;
+            ?>
+
+
+        </div>	
+
+
+
+    </div>
+    <div class="span3 noborder">
+
+
+    </div>
+
+
+    <div class="span12">
+        <?php for ($i=0;$i<4;$i++): ?>
+        <?php if(isset($this->noticias[$i])):?>
+            <div class="span3">
+                <h6><a href="<?php echo $this->url('rh/noticias/categoria',array('id'=>$this->noticias[$i]->getCategorianoticia_fk()->getIdcategorianoticia()));?>" ><?php echo $this->noticias[$i]->getCategorianoticia_fk()->getCategorianome(); ?></a></h6>
+                <h4><a href="<?php echo $this->url('rh/noticias/ver',array('id'=>$this->noticias[$i]->getIdnoticia()));?>" ><?php echo $this->noticias[$i]->getTitulo(); ?></a></h4>
+                <p>
+                    <?php echo reset(explode('.',$this->noticias[$i]->getTexto()));?>
+                </p>
+                <hr>
+                <h5>Data de publicação: <?php echo $this->noticias[$i]->getPublicacao()?></h5>
+            </div>
+         <?php endif;?>
+        <?php endfor; ?>
+
+    </div>
+</div>
+
 <div class="hero-unit">
-    <div class="buttongrande"><a href="<?php echo $this->url('helpdesk',array('setor'=>1))?>"><img src="/images/solicitacaoti.fw.png"/><br/><small>Solicitação de T.I.</small></a></div>
-    <div class="buttongrande"><a href="<?php echo $this->url('helpdesk',array('setor'=>2))?>"><img src="/images/solicitacaope.fw.png"/><br/><small>Solicitação de Projetos Especiais</small></a></div>
+    <div class="buttongrande"><a href="<?php echo $this->url('helpdesk', array('setor' => 1)) ?>"><img src="/images/solicitacaoti.fw.png"/><br/><small>Solicitação de T.I.</small></a></div>
+    <div class="buttongrande"><a href="<?php echo $this->url('helpdesk', array('setor' => 2)) ?>"><img src="/images/solicitacaope.fw.png"/><br/><small>Solicitação de Projetos Especiais</small></a></div>
 </div>
