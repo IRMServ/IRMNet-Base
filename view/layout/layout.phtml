@@ -14,7 +14,16 @@ echo $this->doctype(); ?>
         $this->HeadLink()
                 ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
                 ->prependStylesheet($this->basePath() . '/css/style.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+             
+                ->appendStylesheet('http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css')
+                ->appendStylesheet('css/.css')
+                
+                ->appendStylesheet($this->basePath() . '/js/pe.kenburns/themes/neutral/skin.min.css') 
+                ->appendStylesheet($this->basePath() . '/css/multi-select.css') 
                 ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css');
+                
+                ;
         echo $this->HeadLink()
         ?>
 
@@ -24,7 +33,10 @@ echo $this->doctype(); ?>
                 ->prependFile($this->basePath() . '/js/bootstrap.min.js')
                 ->prependFile($this->basePath() . '/js/jquery.min.js')
                 ->appendFile($this->basePath() . '/js/jquery.editinplace.js')
-        ?>
+              
+                ->appendFile($this->basePath() . '/js/pe.kenburns/jquery.pixelentity.kenburnsSlider.min.js')
+                ->appendFile($this->basePath() . '/js/jquery.multi-select.js')
+        ?> 
 
 
     </head>
