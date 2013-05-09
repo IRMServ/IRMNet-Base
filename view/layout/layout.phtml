@@ -82,7 +82,7 @@ echo $this->doctype(); ?>
          
             <hr>
             <footer>
-                <p>&copy; <?php echo date('Y'); ?> IRM Services <?php echo $this->translate('All rights reserved.') ?></p>
+                <p>&copy; <?php echo date('Y'); ?> IRM Services <?php echo $this->translate('All rights reserved.') ?><span class="pull-right">Logado como: <?php echo $user['displayname']?></p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
