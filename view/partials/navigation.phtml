@@ -1,17 +1,44 @@
+<style>
+    #count
+    {
+      margin-top:50px !important;
+    }
+</style>
+
 <ul class='nav'>
     <?php
 
-    use Zend\Debug\Debug;
-use Zend\Authentication\AuthenticationService;
+    use Zend\Authentication\AuthenticationService;
 
 $auth = new AuthenticationService;
     $user = $auth->getStorage()->read();
     $liClass = '';
     $aAttribs = '';
     $liClasses = array();
-    echo '<li' . $liClass . '><a href="' . $this->url('home') . '"' . $aAttribs . '>Página principal</a>';
-    echo '<li' . $liClass . '><a href="' . $this->url('logout') . '"' . $aAttribs . '>Sair</a>';
-    echo '<li' . $liClass . '><a href="' . $this->url(\str_replace(' ','-',strtolower($user['departamento']))) . '"' . $aAttribs . '>Painel</a>';
+    echo '<li' . $liClass . '><a href="' . $this->url('home') . '"' . $aAttribs . '>Página principal</a></li>';
+    echo '<li' . $liClass . '><a href="' . $this->url('logout') . '"' . $aAttribs . '>Sair</a></li>';
+    echo '<li' . $liClass . '><a href="' . $this->url(\str_replace(' ', '-', strtolower($user['departamento']))) . '"' . $aAttribs . '>Painel</a></li>';
+//    $convite = "<li class=\"dropdown\">
+//                        <a href=\"#\"  >Convite de Hora Extra </a></li>
+//                            
+//";
+    
+           $convite="<li class=\"dropdown\">
+                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Convites de Hora Extra <b class=\"caret\"></b></a>
+                <ul class=\"dropdown-menu\">
+                  <li><a href=\"{$this->url('convite-hora-extra/me')}\">Meus convites</a></li>";
+                  if(count($user['convites-hora-extra'])>0)
+                        {
+                            $count = count($user['convites-hora-extra']);
+                             
+                            $convite .="<li><a href=\"{$this->url('convite-hora-extra/aprovedme')}\">Pendentes de aprovação <span id=\"count\" class=\"badge badge-info\">{$count}</span></a></li>";
+                        }
+                
+                  $convite .="
+                </ul>
+              </li>      ";
+                       
+                        echo $convite;
 //    echo '<li class="divider-vertical"></li>';
 //    foreach ($this->container as $page):
 //        $liClass = '';
