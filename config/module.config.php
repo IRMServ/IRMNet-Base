@@ -8,6 +8,16 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 return array(
+    'acl' => array(
+        'Base' => array(
+            'TI' => array(
+                'Base\Controller\Index:index',
+            ),
+            'RH - ADP' => array(
+                'Base\Controller\Index:index',
+            ),
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -80,7 +90,7 @@ return array(
                             'route' => '/negar/:id',
                             'defaults' => array(
                                 'action' => 'negar',
-                                'id'=>0
+                                'id' => 0
                             ),
                         ),
                     ),
@@ -91,11 +101,10 @@ return array(
                             'route' => '/aprovar/:id',
                             'defaults' => array(
                                 'action' => 'aprovar',
-                                'id'=>0
+                                'id' => 0
                             ),
                         ),
                     ),
-                 
                 ),
             ),
         ),
