@@ -17,7 +17,7 @@ $auth = new AuthenticationService;
     $liClasses = array();
     echo '<li' . $liClass . '><a href="' . $this->url('home') . '"' . $aAttribs . '>Página principal</a></li>';
     echo '<li' . $liClass . '><a href="' . $this->url('logout') . '"' . $aAttribs . '>Sair</a></li>';
-    echo '<li' . $liClass . '><a href="' . $this->url(\str_replace(' ', '-', strtolower($user['departamento']))) . '"' . $aAttribs . '>Painel</a></li>';
+    echo '<li' . $liClass . '><a href="' . $this->url($user['painel']) . '"' . $aAttribs . '>Painel</a></li>';
 //    $convite = "<li class=\"dropdown\">
 //                        <a href=\"#\"  >Convite de Hora Extra </a></li>
 //                            
@@ -30,7 +30,7 @@ $auth = new AuthenticationService;
                   if(count($user['convites-hora-extra'])>0)
                         {
                             $count = count($user['convites-hora-extra']);
-                             
+                           
                             $convite .="<li><a href=\"{$this->url('convite-hora-extra/aprovedme')}\">Pendentes de aprovação <span id=\"count\" class=\"badge badge-info\">{$count}</span></a></li>";
                         }
                 
