@@ -9,7 +9,13 @@
  */
 
 namespace Base;
-
+use Zend\Mvc\MvcEvent;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use Doctrine\ORM\Tools\SchemaTool;
+use DoctrineORMModule\Service\EntityManagerFactory;
+use DoctrineORMModule\Service\DBALConnectionFactory;
+use DoctrineORMModule\Service\ConfigurationFactory as ORMConfigurationFactory;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 class Module {
 
     public function getConfig() {
@@ -24,6 +30,17 @@ class Module {
                 ),
             ),
         );
+    }
+    public function getServiceConfig()
+    {   
+       return array(
+            'factories' => array(
+                'doctrine.entitymanager.orm_alternative'        => new EntityManagerFactory('orm_alternative'),
+                'doctrine.connection.orm_alternative'           => new DBALConnectionFactory('orm_alternative'),
+                'doctrine.configuration.orm_alternative'        => new ORMConfigurationFactory('orm_alternative'),
+                ),
+           );
+
     }
 
 }

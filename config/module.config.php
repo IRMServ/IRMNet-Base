@@ -1,5 +1,5 @@
 <?php
-
+namespace Base;
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -15,6 +15,30 @@ return array(
             ),
             'RH - ADP' => array(
                 'Base\Controller\Index:index',
+            ),
+        ),
+    ),
+      'doctrine' => array(
+        'driver' => array(
+            __NAMESPACE__ . '_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+            ),
+            __NAMESPACE__ . '_driver_alternative' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                )
+            ),
+            'orm_alternative' => array(
+                'drivers' => array(
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver_alternative'
+                )
             ),
         ),
     ),
