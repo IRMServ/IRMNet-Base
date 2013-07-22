@@ -27,7 +27,7 @@ $auth = new AuthenticationService;
                 <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Convites de Hora Extra <b class=\"caret\"></b></a>
                 <ul class=\"dropdown-menu\">
                   <li><a href=\"{$this->url('convite-hora-extra/me')}\">Meus convites</a></li>";
-                  if(count($user['convites-hora-extra'])>0)
+                  if($user['convites-hora-extra']>0)
                         {
                             $count = count($user['convites-hora-extra']);
                            
@@ -38,7 +38,7 @@ $auth = new AuthenticationService;
                 </ul>
               </li>      ";
                        
-                        //echo $convite;
+                        echo $convite;
 //    echo '<li class="divider-vertical"></li>';
 //    foreach ($this->container as $page):
 //        $liClass = '';
