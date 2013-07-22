@@ -1,133 +1,84 @@
 <?php
-namespace Base;
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonBase for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+
 return array(
-    'acl' => array(
-        'Base' => array(
-            'TI' => array(
-                'Base\Controller\Index:index',
-            ),
-            'RH - ADP' => array(
-                'Base\Controller\Index:index',
-            ),
+    'controllers' => array(
+        'invokables' => array(
+            'Auth\Controller\Index' => 'Auth\Controller\IndexController'
         ),
     ),
-      'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
-            ),
-            __NAMESPACE__ . '_driver_alternative' => array(
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
-            ),
-            'orm_default' => array(
-                'drivers' => array(
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                )
-            ),
-            'orm_alternative' => array(
-                'drivers' => array(
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver_alternative'
-                )
-            ),
+    'acl' => array(
+        'Roles' => array(
+            'TI' =>'ti',
+            'CONTROLADORIA'=>'controladoria',
+            'ALMOXARIFADO'=>'almoxarifado',
+            'COMPRAS'=>'compras',
+            'DIRETORIA'=>'diretoria',
+            'FABRICAÇÃO'=>'fabricacao',
+            'FINANCEIRO - CONTÁBIL'=>'financeiro',
+            'FISCAL'=>'fiscal',
+            'LOGÍSTICA'=>'logistica',
+            'OCTG - ADMINISTRATIVO'=>'octg',
+            'OCTG - INSPEÇÃO'=>'octg',
+            'OCTG - MACHINE SHOP'=>'octg',
+            'OCTG - VÁLVULAS'=>'octg',
+            'OPERACIONAL - OFFSHORE'=>'operacional',
+            'PROJETOS ESPECIAIS'=>'projetos-especiais',
+            'QUALIDADE'=>'qualidade',
+            'RELATÓRIO'=>'relatorio',
+            'RH'=>'rh',
+            'RH - ADP'=>'departamento-pessoal',
+            'RH - GT'=>'rh',
+            'RH - T&D'=>'td',
+            'SMS'=>'sms',
+            'TRANSPORTE'=>'logistica',
+            'PLANEJAMENTO'=>'planejamento',
+            'JURIDICO'=>'juridico'
         ),
+        'Resources'=>array(          
+            'DP',
+            'Helpdesk',           
+            'Base',
+            'TI',
+            'ProjetosEspeciais',
+            'RH',
+            'MailService',
+            'Relatorio',
+            'Qualidade',
+            'Planejamento',
+            'Operacional',
+            'OCTG',
+            'Logistica',
+            'Juridico',
+            'HSE',
+            'Fiscal',
+            'Financeiro',
+            'Fabricacao',
+            'Diretoria',
+            'Controladoria',
+            'Contabilidade',
+            'Compras',
+            'Almoxarifado',
+        )
     ),
     'router' => array(
         'routes' => array(
-            'home' => array(
+            'login' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route' => '/',
+                    'route' => '/login',
                     'defaults' => array(
-                        'controller' => 'Base\Controller\Index',
+                        'controller' => 'Auth\Controller\Index',
                         'action' => 'index',
                     ),
                 ),
-                'may_terminate' => true,
-                'child_routes' => array()
             ),
-            'convite-hora-extra' => array(
-                'type' => 'Literal',
-                'may_terminate' => true,
+            'logout' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route' => '/convite-hora-extra',
+                    'route' => '/logout',
                     'defaults' => array(
-                        'controller' => 'DP\Controller\ConviteHoraExtra',
-                        'action' => 'index',
-                    ),
-                ),
-                'child_routes' => array(
-                    'single-store' => array(
-                        'type' => 'Literal',
-                        'may_terminate' => true,
-                        'options' => array(
-                            'route' => '/convite-individual',
-                            'defaults' => array(
-                                'action' => 'storesingle',
-                            ),
-                        ),
-                    ),
-                    'group-store' => array(
-                        'type' => 'Literal',
-                        'may_terminate' => true,
-                        'options' => array(
-                            'route' => '/convite-coletivo',
-                            'defaults' => array(
-                                'action' => 'storegroup',
-                            ),
-                        ),
-                    ),
-                    'me' => array(
-                        'type' => 'Literal',
-                        'may_terminate' => true,
-                        'options' => array(
-                            'route' => '/me',
-                            'defaults' => array(
-                                'action' => 'me',
-                            ),
-                        ),
-                    ),
-                    'aprovedme' => array(
-                        'type' => 'Literal',
-                        'may_terminate' => true,
-                        'options' => array(
-                            'route' => '/approved-me',
-                            'defaults' => array(
-                                'action' => 'aprovedme',
-                            ),
-                        ),
-                    ),
-                    'negar' => array(
-                        'type' => 'Segment',
-                        'may_terminate' => true,
-                        'options' => array(
-                            'route' => '/negar/:id',
-                            'defaults' => array(
-                                'action' => 'negar',
-                                'id' => 0
-                            ),
-                        ),
-                    ),
-                    'aprovar' => array(
-                        'type' => 'Segment',
-                        'may_terminate' => true,
-                        'options' => array(
-                            'route' => '/aprovar/:id',
-                            'defaults' => array(
-                                'action' => 'aprovar',
-                                'id' => 0
-                            ),
-                        ),
+                        'controller' => 'Auth\Controller\Index',
+                        'action' => 'logout',
                     ),
                 ),
             ),
@@ -135,25 +86,39 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            'Ldap' => function($sm) {
+                $config = include __DIR__ . '/ldap.config.php';
+                unset($config['log_path']);
+                $ldap = new \Zend\Ldap\Ldap($config['server']);
+                $ldap->bind();
+                return $ldap;
+            },
             'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'UsersPair' => function($sm) {
+                $ldap = $sm->get('Ldap');
+                $config = include 'ldap.config.php';
+                $f2 = \Zend\Ldap\Filter::equals('objectCategory', 'person');
+                $f3 = \Zend\Ldap\Filter::equals('objectClass', 'user');
+                $f5 = \Zend\Ldap\Filter::equals('useraccountcontrol', '66048');
+                $f4 = \Zend\Ldap\Filter::andFilter($f2, $f3, $f5);
+
+                $result = $ldap->search($f4, $config['server']['baseDn'], \Zend\Ldap\Ldap::SEARCH_SCOPE_SUB);
+
+                $users = array();
+                $noArray = array('Germano', 'Funcionário', 'teste', 'WKRADAR', 'Recepcao', 'Dswk', 'Root');
+                foreach ($result as $item) {
+                    if (!in_array($item['displayname'][0], $noArray)) {
+                        $users[$item['displayname'][0]] = $item['displayname'][0];
+                    }
+                }
+                return $users;
+            },
         ),
+        'services' => array(
+            'Auth' => new \Zend\Authentication\AuthenticationService()
+        )
     ),
-    'translator' => array(
-        'locale' => 'pt_BR',
-        'translation_file_patterns' => array(
-            array(
-                'type' => 'gettext',
-                'base_dir' => __DIR__ . '/../language',
-                'pattern' => '%s.mo',
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
-            'Base\Controller\Index' => 'Base\Controller\IndexController'
-        ),
-    ),
+    'ldap-config' => include __DIR__ . '/ldap.config.php',
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,
@@ -161,24 +126,43 @@ return array(
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-            'base/index/index' => __DIR__ . '/../view/base/index/index.phtml',
+            'layout/layout' => realpath(__DIR__ . '/../../base/view/layout/layout.phtml'),
+            'application/index/index' => __DIR__ . '/../../base/view/application/index/index.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
-            'partials/navigation' => __DIR__ . '/../view/navigation.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
     ),
-//        'navigation' => array(
-//        // The DefaultNavigationFactory we configured in (1) uses 'default' as the sitemap key
-//        'default' => array(
-//            // And finally, here is where we define our page hierarchy
-//            'base' => array(
-//                'label' => 'Página principal',
-//                'route' => 'home',
-//            ),
-//        ),
-//    ),
+    'doctrine' => array(
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'params' => array(
+                    'host' => 'localhost',
+                    'port' => '3306',
+                    'user' => '',
+                    'password' => '',
+                    'dbname' => 'zf2tutorial',
+                )
+            )
+        )
+    ),
+    'controller_plugins' => array(
+        'invokables' => array(
+            'Permission' => 'Auth\Plugin\Permission',
+            'FilterMemberOf' => 'Auth\Plugin\FilterMemberOf',
+        )
+    ),
+    'navigation' => array(
+// The DefaultNavigationFactory we configured in (1) uses 'default' as the sitemap key
+        'default' => array(
+// And finally, here is where we define our page hierarchy
+            'auth' => array(
+                'label' => 'Sair',
+                'route' => 'logout',
+            ),
+        ),
+    ),
 );

@@ -1,28 +1,78 @@
+<style>
+    #count
+    {
+      margin-top:50px !important;
+    }
+</style>
+
 <ul class='nav'>
     <?php
-    foreach ($this->container as $page):
-        $sub = $page->getPages();
 
-        if ($page->isActive())
-            $liClasses[] = 'active';
-        if (count($sub) > 0):
-            $liClasses[] = 'dropdown';
-            $aAttribs = ' class="dropdown-toggle" data-toggle="dropdown"';
-        endif;
-        if (count($liClasses) > 0)
-            $liClass = ' class="' . implode(' ', $liClasses) . '"';
-        echo '<li' . $liClass . '><a href="' . $this->url($page->getRoute()) . '"' . $aAttribs . '>' . $page->getlabel() . '</a>';
-        if (count($sub) > 0):
-            echo '<ul class="dropdown-menu">';
-            foreach ($sub as $pages):
-                $active = $pages->isActive() ? ' class="active"' : '';
-                echo '<li' . $active . '><a href="' . $this->url($pages->getRoute(), array('action' => $pages->getAction())) . '">' . $pages->getlabel() . '</a></li>';
-            endforeach;
-            echo '</ul></li>';
-        else:
-            echo '</li>';
-        endif;
-        unset($aAttribs, $liClass, $liClasses);
-    endforeach;
+    use Zend\Authentication\AuthenticationService;
+
+$auth = new AuthenticationService;
+    $user = $auth->getStorage()->read();
+    $liClass = '';
+    $aAttribs = '';
+    $liClasses = array();
+    echo '<li' . $liClass . '><a href="' . $this->url('home') . '"' . $aAttribs . '>Página principal</a></li>';
+    echo '<li' . $liClass . '><a href="' . $this->url('logout') . '"' . $aAttribs . '>Sair</a></li>';
+    echo '<li' . $liClass . '><a href="' . $this->url($user['painel']) . '"' . $aAttribs . '>Painel</a></li>';
+//    $convite = "<li class=\"dropdown\">
+//                        <a href=\"#\"  >Convite de Hora Extra </a></li>
+//                            
+//";
+    
+           $convite="<li class=\"dropdown\">
+                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Convites de Hora Extra <b class=\"caret\"></b></a>
+                <ul class=\"dropdown-menu\">
+                  <li><a href=\"{$this->url('convite-hora-extra/me')}\">Meus convites</a></li>";
+                 //print_r($user['convites-hora-extra']);
+                  if($user['convites-hora-extra']>0)
+                        {
+                            $count = count($user['convites-hora-extra']);
+                           
+                            $convite .="<li><a href=\"{$this->url('convite-hora-extra/aprovedme')}\">Pendentes de aprovação <span id=\"count\" class=\"badge badge-info\">{$count}</span></a></li>";
+                        }
+                
+                  $convite .="
+                </ul>
+              </li>      ";
+                       
+                        echo $convite;
+//    echo '<li class="divider-vertical"></li>';
+//    foreach ($this->container as $page):
+//        $liClass = '';
+//        $aAttribs = '';
+//        $liClasses = array();
+//
+//        
+//
+//            $sub = $page->getPages();
+//          
+//
+//            if ($page->isActive())
+//                $liClasses[] = 'active';
+//            if (count($sub) > 0):
+//                $liClasses[] = 'dropdown';
+//                $aAttribs = ' class="dropdown-toggle" data-toggle="dropdown"';
+//            endif;
+//            if (count($liClasses) > 0)
+//                $liClass = ' class="' . implode(' ', $liClasses) . '"';
+//            echo '<li' . $liClass . '><a href="' . $this->url($page->getRoute()) . '"' . $aAttribs . '>' . $page->getlabel() . '</a>';
+//            if (count($sub) > 0):
+//                echo '<ul class="dropdown-menu">';
+//                foreach ($sub as $pages):
+//                    $param = $pages->getParams();
+//                    $active = $pages->isActive() ? ' class="active"' : '';
+//                    echo '<li' . $active . '><a href="' . $this->url($pages->getRoute(), array('action' => $pages->getAction(), 'setor' => $param['setor'])) . '">' . $pages->getlabel() . '</a></li>';
+//                endforeach;
+//                echo '</ul></li>';
+//            else:
+//                echo '</li>';
+//           
+//            unset($aAttribs, $liClass, $liClasses);
+//        endif;
+//    endforeach;
     ?>
 </ul>
