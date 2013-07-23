@@ -16,6 +16,75 @@ return array(
             'RH - ADP' => array(
                 'Base\Controller\Index:index',
             ),
+            'CONTROLADORIA'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'ALMOXARIFADO'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'COMPRAS'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'DIRETORIA'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'FABRICAÇÃO'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'FINANCEIRO - CONTÁBIL'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'FISCAL'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'LOGÍSTICA'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'OCTG - ADMINISTRATIVO'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'OCTG - INSPEÇÃO'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'OCTG - MACHINE SHOP'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'OCTG - VÁLVULAS'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'OPERACIONAL - OFFSHORE'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'PROJETOS ESPECIAIS'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'QUALIDADE'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'RELATÓRIO'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'RH'=>array(
+                'Base\Controller\Index:index',
+            ),           
+            'RH - GT'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'RH - T&D'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'SMS'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'TRANSPORTE'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'PLANEJAMENTO'=>array(
+                'Base\Controller\Index:index',
+            ),
+            'JURIDICO'=>array(
+                'Base\Controller\Index:index',
+            ),
         ),
     ),
       'doctrine' => array(
