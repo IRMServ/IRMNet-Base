@@ -29,7 +29,7 @@ $auth = new AuthenticationService;
                   <li><a href=\"{$this->url('convite-hora-extra/me')}\">Meus convites</a></li>";
                   if($user['convites-hora-extra']>0)
                         {
-                            $count = count($user['convites-hora-extra']);
+                            $count = $user['convites-hora-extra'];
                            
                             $convite .="<li><a href=\"{$this->url('convite-hora-extra/aprovedme')}\">Pendentes de aprovação <span id=\"count\" class=\"badge badge-info\">{$count}</span></a></li>";
                         }
