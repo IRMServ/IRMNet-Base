@@ -240,6 +240,13 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+       'asset_manager' => array(
+        'resolver_configs' => array(
+            'paths' => array(
+                __DIR__ . '/../public',
+            ),
+        ),
+    ),
 // 'navigation' => array(
 // // The DefaultNavigationFactory we configured in (1) uses 'default' as the sitemap key
 // 'default' => array(

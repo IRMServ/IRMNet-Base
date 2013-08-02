@@ -17,11 +17,12 @@ echo $this->doctype(); ?>
                 ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
              
                 ->appendStylesheet('http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css')
-                
+   
                 
                 ->appendStylesheet($this->basePath() . '/js/pe.kenburns/themes/neutral/skin.min.css') 
                 ->appendStylesheet($this->basePath() . '/css/multi-select.css') 
                 ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css');
+                //->appendStylesheet($this->basePath() . '/css/barra-base.css');
                 
                 ;
         echo $this->HeadLink()
@@ -44,7 +45,8 @@ echo $this->doctype(); ?>
         <?php
         $auth = new AuthenticationService;
         $user = $auth->getStorage()->read();
-        if($auth->hasIdentity()):?>
+        
+        if(!empty($user)):?>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">                     
@@ -79,11 +81,12 @@ echo $this->doctype(); ?>
       
         <div class="container">
             <?php echo $this->content; ?>
-         
+         <?php if(!empty($user)):?>
             <hr>
             <footer>
                 <p>&copy; <?php echo date('Y'); ?> IRM Services <?php echo $this->translate('All rights reserved.') ?><span class="pull-right">Logado como: <?php echo $user['displayname']?></p>
             </footer>
+            <?php endif;?>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
     </body>
