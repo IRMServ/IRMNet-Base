@@ -21,8 +21,8 @@ echo $this->doctype(); ?>
                 
                 ->appendStylesheet($this->basePath() . '/js/pe.kenburns/themes/neutral/skin.min.css') 
                 ->appendStylesheet($this->basePath() . '/css/multi-select.css') 
-                ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css');
-                //->appendStylesheet($this->basePath() . '/css/barra-base.css');
+                ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                ->appendStylesheet($this->basePath() . '/css/barra-base.css');
                 
                 ;
         echo $this->HeadLink()
